@@ -2,70 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Organoids & Bioengineering Network Map</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
-    <style>
-        body { font-family: Inter, sans-serif; margin: 0; padding: 0; background: #f8f9fa; }
-        h1 { text-align: center; margin: 20px 0; }
-        #searchBar { width: 90%; max-width: 600px; margin: 10px auto; padding: 8px; border: 1px solid #ccc; border-radius: 5px; }
-        #map { height: 80vh; width: 100%; }
-        .legend { background: white; padding: 10px; font-size: 14px; line-height: 1.5; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .legend i { width: 14px; height: 14px; float: left; margin-right: 8px; border-radius: 50%; }
-    </style>
+  <meta charset="UTF-8">
+  <title>Organoids & Bioengineering Core Facilities - Western Switzerland Network</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-
-<h1>Organoids & Bioengineering Network</h1>
-<input type="text" id="searchBar" placeholder="Search for a facility...">
-<div id="map"></div>
-
-<script>
-    const map = L.map('map').setView([46.8, 8.3], 8);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    const markers = L.markerClusterGroup();
-    const facilities = [
-        { name: "EPFL PTBET", coords: [46.5191, 6.5668], url: "https://www.epfl.ch/research/facilities/ptbet/", category: "Core", color: "blue" },
-        { name: "UNIL SCOF", coords: [46.5222, 6.5815], url: "https://wp.unil.ch/scof/", category: "Core", color: "blue" },
-        { name: "Sun Bioscience", coords: [46.5191, 6.5668], url: "https://sunbioscience.com", category: "Startup", color: "red" }
-    ];
-
-    const allMarkers = [];
-
-    facilities.forEach(fac => {
-        const marker = L.circleMarker(fac.coords, {
-            radius: 8,
-            fillColor: fac.color,
-            color: "#333",
-            weight: 1,
-            opacity: 1,
-            fillOpacity: 0.8
-        }).bindPopup(`<strong>${fac.name}</strong><br><a href="${fac.url}" target="_blank">Website</a>`);
-        marker.facilityName = fac.name.toLowerCase();
-        allMarkers.push(marker);
-        markers.addLayer(marker);
-    });
-
-    map.addLayer(markers);
-
-    document.getElementById('searchBar').addEventListener('input', function () {
-        const query = this.value.toLowerCase();
-        markers.clearLayers();
-        allMarkers.forEach(marker => {
-            if (marker.facilityName.includes(query)) {
-                markers.addLayer(marker);
-            }
-        });
-    });
-</script>
-
+  <h1>Organoids & Bioengineering Core Facilities – Western Switzerland Network</h1>
+  <p>This is a placeholder version of the map. The full interactive version will include all facilities, icons, filtering, and a collapsible sidebar.</p>
 </body>
 </html>
