@@ -2,12 +2,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Organoids & Bioengineering Core Facilities - Western Switzerland Network</title>
+  <meta charset="UTF-8" />
+  <title>Organoids & Bioengineering Network Map</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+  <style>
+    body { margin: 0; font-family: sans-serif; }
+    #map { height: 100vh; }
+  </style>
 </head>
 <body>
-  <h1>Organoids & Bioengineering Core Facilities – Western Switzerland Network</h1>
-  <p>This is a placeholder version of the map. The full interactive version will include all facilities, icons, filtering, and a collapsible sidebar.</p>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script>
+    const map = L.map('map').setView([46.8, 7.5], 8);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap & Carto',
+      subdomains: 'abcd',
+      maxZoom: 18
+    }).addTo(map);
+
+    const facilities = [
+      { name: "EPFL PTBET", lat: 46.5231, lon: 6.6274 },
+      { name: "UNIL SCOF", lat: 46.5236, lon: 6.6291 },
+      { name: "Sun Bioscience", lat: 46.5235, lon: 6.5675 },
+      { name: "Doppl", lat: 46.2044, lon: 6.1432 },
+      { name: "NagiBio", lat: 46.9481, lon: 7.4474 },
+      { name: "InSphero", lat: 47.3769, lon: 8.5417 },
+      { name: "3Brain", lat: 46.516, lon: 6.6328 },
+      { name: "Axion Biosystems", lat: 47.3686, lon: 8.5392 },
+      { name: "Kugelmeiers", lat: 47.369, lon: 8.538 },
+      { name: "Alveolix", lat: 46.9481, lon: 7.4474 },
+      { name: "Cutiss", lat: 47.3902, lon: 8.5156 },
+      { name: "FluoSphera", lat: 46.5241, lon: 6.5957 },
+      { name: "RegenHU", lat: 46.9953, lon: 6.9293 },
+      { name: "Readily3D", lat: 46.5191, lon: 6.5668 },
+      { name: "The Ark Valais", lat: 46.2276, lon: 7.3585 }
+    ];
+
+    const markerGroup = L.markerClusterGroup();
+    facilities.forEach(fac => {
+      const marker = L.marker([fac.lat, fac.lon])
+        .bindPopup(`<b>${fac.name}</b>`);
+      markerGroup.addLayer(marker);
+    });
+    map.addLayer(markerGroup);
+  </script>
 </body>
 </html>
