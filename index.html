@@ -3,59 +3,63 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Organoids & Bioengineering Core Facilities – Western Switzerland Network</title>
+  <title>Organoids & Bioengineering Network Map</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
   <style>
-    body { font-family: sans-serif; padding: 2rem; }
-    h1 { font-size: 1.8rem; }
-    ul { line-height: 1.6; }
+    html, body { margin: 0; padding: 0; font-family: sans-serif; }
+    #map { height: 100vh; width: 100vw; }
   </style>
 </head>
 <body>
-  <h1>Organoids & Bioengineering Core Facilities – Western Switzerland Network</h1>
-  <p>This page includes the full list of facilities as a placeholder. Each entry can be geocoded and styled in the final interactive map.</p>
-  <ul>
-    <li>EPFL PTBET – Rue du Bugnon 25A, Lausanne</li>
-    <li>UNIL SCOF – Rue du Bugnon 9, Lausanne</li>
-    <li>Sun Bioscience</li>
-    <li>Doppl</li>
-    <li>NagiBio</li>
-    <li>InSphero</li>
-    <li>3Brain</li>
-    <li>Axion Biosystems</li>
-    <li>Kugelmeiers</li>
-    <li>Alveolix</li>
-    <li>Cutiss</li>
-    <li>FluoSphera</li>
-    <li>RegenHU</li>
-    <li>Readily3D</li>
-    <li>The Ark Valais</li>
-    <li>EPFL Center of Phenogenomics SCOL</li>
-    <li>HCNP.ch</li>
-    <li>DBMR Translational Organoid Resource</li>
-    <li>SCRM UniBe</li>
-    <li>IOB Human Organoid Platform</li>
-    <li>StemCellNet</li>
-    <li>ARTORG Organs-on-Chip Facility</li>
-    <li>HEPIA Bio-Ingenierie</li>
-    <li>Bioinspired Materials</li>
-    <li>CSEM Tools for Life Sciences</li>
-    <li>ETHZ BSSE Microtissue Systems</li>
-    <li>UZH iPSCore</li>
-    <li>UZH iPSC Research</li>
-    <li>UNIBAS 3D Print Lab</li>
-    <li>UNIBAS Regenerative Surgery Additive Manufacturing</li>
-    <li>UNIBAS GMP Facility</li>
-    <li>ETHZ Nexus</li>
-    <li>ETHZ LAF</li>
-    <li>ETHZ BSSE Cleanroom</li>
-    <li>EPFL CMI</li>
-    <li>EPFL AFA Workshop</li>
-    <li>EPFL MAKE Platform</li>
-    <li>EPFL iPHYS Electronic Workshop</li>
-    <li>EPFL Neuchâtel Microscopy</li>
-    <li>EPFL Biomolecular Screening</li>
-    <li>ZHAW TEDD</li>
-  </ul>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script>
+    const map = L.map('map').setView([46.5, 6.6], 9);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap & Carto',
+      subdomains: 'abcd',
+      maxZoom: 18
+    }).addTo(map);
+
+    const facilities = [
+      {
+        acronym: "PTBET",
+        name: "EPFL PTBET",
+        lat: 46.5231,
+        lon: 6.6274,
+        desc: "A core facility specializing in tissue bioengineering.",
+        url: "https://www.epfl.ch/research/facilities/ptbet/"
+      },
+      {
+        acronym: "SCOF",
+        name: "UNIL SCOF",
+        lat: 46.5236,
+        lon: 6.6291,
+        desc: "Organoid core facility at the University of Lausanne.",
+        url: "https://wp.unil.ch/scof/"
+      },
+      {
+        acronym: "SBS",
+        name: "Sun Bioscience",
+        lat: 46.5235,
+        lon: 6.5675,
+        desc: "A biotech startup specializing in organoid-based technologies.",
+        url: "https://sunbioscience.com"
+      }
+    ];
+
+    const markers = L.markerClusterGroup();
+    facilities.forEach(fac => {
+      const marker = L.marker([fac.lat, fac.lon])
+        .bindPopup(`<strong>${fac.acronym}</strong><br>${fac.desc}<br><a href="${fac.url}" target="_blank">Visit site</a>`);
+      marker.bindTooltip(fac.acronym, { permanent: true, direction: 'top' });
+      markers.addLayer(marker);
+    });
+
+    map.addLayer(markers);
+  </script>
 </body>
 </html>
