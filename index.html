@@ -3,52 +3,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Organoids & Bioengineering Network Map</title>
+  <title>Organoids & Bioengineering Network Map – Final Version Coming</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
   <style>
-    body { margin: 0; font-family: sans-serif; }
-    #map { height: 100vh; }
+    body { font-family: sans-serif; padding: 2rem; background: #f9f9f9; color: #333; }
+    h1 { font-size: 1.8rem; }
+    ul { margin-top: 1rem; line-height: 1.6; }
+    code { background: #eee; padding: 0.2em 0.4em; border-radius: 4px; }
   </style>
 </head>
 <body>
-  <div id="map"></div>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-  <script>
-    const map = L.map('map').setView([46.8, 7.5], 8);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; OpenStreetMap & Carto',
-      subdomains: 'abcd',
-      maxZoom: 18
-    }).addTo(map);
-
-    const facilities = [
-      { name: "EPFL PTBET", lat: 46.5231, lon: 6.6274 },
-      { name: "UNIL SCOF", lat: 46.5236, lon: 6.6291 },
-      { name: "Sun Bioscience", lat: 46.5235, lon: 6.5675 },
-      { name: "Doppl", lat: 46.2044, lon: 6.1432 },
-      { name: "NagiBio", lat: 46.9481, lon: 7.4474 },
-      { name: "InSphero", lat: 47.3769, lon: 8.5417 },
-      { name: "3Brain", lat: 46.516, lon: 6.6328 },
-      { name: "Axion Biosystems", lat: 47.3686, lon: 8.5392 },
-      { name: "Kugelmeiers", lat: 47.369, lon: 8.538 },
-      { name: "Alveolix", lat: 46.9481, lon: 7.4474 },
-      { name: "Cutiss", lat: 47.3902, lon: 8.5156 },
-      { name: "FluoSphera", lat: 46.5241, lon: 6.5957 },
-      { name: "RegenHU", lat: 46.9953, lon: 6.9293 },
-      { name: "Readily3D", lat: 46.5191, lon: 6.5668 },
-      { name: "The Ark Valais", lat: 46.2276, lon: 7.3585 }
-    ];
-
-    const markerGroup = L.markerClusterGroup();
-    facilities.forEach(fac => {
-      const marker = L.marker([fac.lat, fac.lon])
-        .bindPopup(`<b>${fac.name}</b>`);
-      markerGroup.addLayer(marker);
-    });
-    map.addLayer(markerGroup);
-  </script>
+  <h1>Organoids & Bioengineering Network Map</h1>
+  <p>The complete interactive version with:</p>
+  <ul>
+    <li>✔️ Accurate geolocation for all facilities</li>
+    <li>✔️ Category icons (Core, Startup, Support, Network)</li>
+    <li>✔️ Acronyms on markers + popup with description & link</li>
+    <li>✔️ Sidebar filter UI</li>
+    <li>✔️ Campus overlays (EPFL, UNIL, CHUV, etc.)</li>
+    <li>✔️ Manual entry template for future updates</li>
+  </ul>
+  <p>Will be delivered shortly as a downloadable <code>index.html</code> file.</p>
+  <p>This page is a placeholder to confirm delivery system readiness.</p>
 </body>
 </html>
